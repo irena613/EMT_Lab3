@@ -11,10 +11,11 @@ public record DisplayBookDto(Long id,
                              String name,
                              Category category,
                              Long author,
-                             Long availableCopies) {
+                             Long availableCopies,
+                             boolean goodCondition) {
 //TODO figure out user thingie
     public static DisplayBookDto from(Book book) {
-        return new DisplayBookDto(book.getId(), book.getName(), book.getCategory(), book.getAuthor().getId(), book.getAvailableCopies());
+        return new DisplayBookDto(book.getId(), book.getName(), book.getCategory(), book.getAuthor().getId(), book.getAvailableCopies(), book.getGoodCondition());
     }
 
     public static List<DisplayBookDto> from(List<Book> books) {
@@ -22,6 +23,6 @@ public record DisplayBookDto(Long id,
     }
 
     public Book toBook(Author author) {
-        return new Book(name, category, author, availableCopies);
+        return new Book(name, category, author, availableCopies, goodCondition);
     }
 }

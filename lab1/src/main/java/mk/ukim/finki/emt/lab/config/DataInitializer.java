@@ -49,41 +49,41 @@
 //
 //    @PostConstruct
 //    public void initData() {
-//        userRepository.save(new User(
-//                "user",
-//                passwordEncoder.encode("user"),
-//                "Irena",
-//                "Latinovska",
-//                Role.ROLE_USER
-//        ));
+////        userRepository.save(new User(
+////                "user",
+////                passwordEncoder.encode("user"),
+////                "Irena",
+////                "Latinovska",
+////                Role.ROLE_USER
+////        ));
+////
+////        userRepository.save(new User(
+////                "librarian",
+////                passwordEncoder.encode("librarian"),
+////                "BangTan",
+////                "Sonyeondan",
+////                Role.ROLE_LIBRARIAN
+////        ));
+////
+////        userRepository.save(new User(
+////                "admin",
+////                passwordEncoder.encode("admin"),
+////                "BangTan",
+////                "Sonyeondan",
+////                Role.ROLE_ADMIN
+////        ));
 //
-//        userRepository.save(new User(
-//                "librarian",
-//                passwordEncoder.encode("librarian"),
-//                "BangTan",
-//                "Sonyeondan",
-//                Role.ROLE_LIBRARIAN
-//        ));
+////        for (int i = 1; i < 7; i++) {
+////            this.countryService.create("Country: " + i, "Continent: " + (i/2+1));
+////        }
+////
+////        for (int i = 1; i < 6; i++) {
+////            this.authorService.create("AuthorName: " + i, "AuthorSurname: " + i, this.countryService.listAll().get((i - 1) % 6).getId());
+////        }
 //
-//        userRepository.save(new User(
-//                "admin",
-//                passwordEncoder.encode("admin"),
-//                "BangTan",
-//                "Sonyeondan",
-//                Role.ROLE_ADMIN
-//        ));
-//
-//        for (int i = 1; i < 7; i++) {
-//            this.countryService.create("Country: " + i, "Continent: " + (i/2+1));
-//        }
-//
-//        for (int i = 1; i < 6; i++) {
-//            this.authorService.create("AuthorName: " + i, "AuthorSurname: " + i, this.countryService.listAll().get((i - 1) % 6).getId());
-//        }
-//
-//        for (int i = 1; i < 11; i++) {
+//        for (int i = 11; i < 18; i++) {
 //            //this.bookService.create("Book: " + i, this.randomize(i), this.authorService.listAll().get((i - 1) % 5).getId(), userRepository.findByUsername("Irena").orElseThrow(InvalidUsernameOrPasswordException::new), Long.parseLong("7"));
-//            this.bookService.create("Book: " + i, this.randomize(i), this.authorService.listAll().get((i - 1) % 5).getId(), Long.parseLong("7"));
+//            this.bookService.create("Book: " + i, this.randomize(i), this.authorService.listAll().get((i - 1) % 5).getId(), Long.parseLong("7"), false);
 //        }
 //
 //    }

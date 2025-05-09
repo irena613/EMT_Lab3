@@ -56,6 +56,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book create(String name, Category category, Long id, Long availableCopies, boolean goodCondition) {
+        Optional<Author> author = this.authorService.findById(id);
+        Book book = new Book(name, category, author.orElse(null), availableCopies, goodCondition);
+        return this.bookRepository.save(book);
+    }
+
+    @Override
     public Book delete(Long id) {
         return this.bookRepository.findById(id).orElseThrow(InvalidBookIdException::new);
     }
@@ -134,9 +141,6 @@ public class BookServiceImpl implements BookService {
             existingBook.setAvailableCopies(book.getAvailableCopies());
         }
         return Optional.of(bookRepository.save(existingBook));
-
     }
-
-
 
 }

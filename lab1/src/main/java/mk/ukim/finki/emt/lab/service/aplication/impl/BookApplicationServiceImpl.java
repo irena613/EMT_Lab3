@@ -7,6 +7,8 @@ import mk.ukim.finki.emt.lab.model.dto.create.CreateBookDto;
 import mk.ukim.finki.emt.lab.model.dto.display.DisplayBookDto;
 import mk.ukim.finki.emt.lab.model.dto.update.UpdateBookDto;
 import mk.ukim.finki.emt.lab.model.exceptions.BookNotFoundException;
+import mk.ukim.finki.emt.lab.model.view.BooksInGoodConditionView;
+import mk.ukim.finki.emt.lab.repository.views.BooksInGoodConditionViewRepository;
 import mk.ukim.finki.emt.lab.service.aplication.BookApplicationService;
 import mk.ukim.finki.emt.lab.service.domain.AuthorService;
 import mk.ukim.finki.emt.lab.service.domain.BookService;
@@ -18,10 +20,12 @@ public class BookApplicationServiceImpl implements BookApplicationService {
 
     private final BookService bookService;
     private final AuthorService authorService;
+    private final BooksInGoodConditionViewRepository booksInGoodConditionViewRepository;
 
-    public BookApplicationServiceImpl(BookService bookService, AuthorService authorService) {
+    public BookApplicationServiceImpl(BookService bookService, AuthorService authorService, BooksInGoodConditionViewRepository booksInGoodConditionViewRepository) {
         this.bookService = bookService;
         this.authorService = authorService;
+        this.booksInGoodConditionViewRepository = booksInGoodConditionViewRepository;
     }
 
     @Override
@@ -68,4 +72,15 @@ public class BookApplicationServiceImpl implements BookApplicationService {
                 .map(DisplayBookDto::from);
 //        return Optional.empty();
     }
+
+    @Override
+    public List<BooksInGoodConditionView> listBooksInGoodCondition() {
+        return booksInGoodConditionViewRepository.findAll();
+           }
+
+    @Override
+    public void refreshMaterializedView() {
+        booksInGoodConditionViewRepository.refreshMaterializedView();
+    }
+
 }

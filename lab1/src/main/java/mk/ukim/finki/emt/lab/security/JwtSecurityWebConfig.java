@@ -16,7 +16,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
-
+@Profile("prod")
 @Configuration
 @EnableWebSecurity
 public class JwtSecurityWebConfig {
@@ -58,15 +58,18 @@ public class JwtSecurityWebConfig {
                                                 "/register"
                                         )
                                         .permitAll()
+//                                        .anyRequest()
+//                                        .permitAll()
                                 .requestMatchers(
                                         "/api/books/**",
+                                        "/api/books/goodCondition",
                                         "/api/authors/**",
                                         "/api/countries/**"
                                 )
-                                .hasAnyRole("ADMIN")
-                                        .anyRequest()
-//                                        .permitAll()
-                                        .hasAnyRole("USER", "ADMIN")
+                                        .permitAll()
+//                                        .hasAnyRole("ADMIN")
+//                                        .anyRequest()
+//                                        .hasAnyRole("USER", "ADMIN")
                 )
                 .sessionManagement(sessionManagementConfigurer ->
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

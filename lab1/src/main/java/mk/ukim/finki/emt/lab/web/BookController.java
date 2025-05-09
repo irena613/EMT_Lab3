@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import mk.ukim.finki.emt.lab.model.dto.create.CreateBookDto;
 import mk.ukim.finki.emt.lab.model.dto.display.DisplayBookDto;
 import mk.ukim.finki.emt.lab.model.dto.update.UpdateBookDto;
+import mk.ukim.finki.emt.lab.model.view.BooksInGoodConditionView;
 import mk.ukim.finki.emt.lab.security.JwtConstants;
 import mk.ukim.finki.emt.lab.service.aplication.AuthorApplicationService;
 import mk.ukim.finki.emt.lab.service.aplication.BookApplicationService;
@@ -22,6 +23,7 @@ public class BookController {
 
     private final BookApplicationService bookApplicationService;
     private final AuthorApplicationService authorApplicationService;
+
 
     public BookController(BookApplicationService bookApplicationService, AuthorApplicationService authorApplicationService) {
         this.bookApplicationService = bookApplicationService;
@@ -96,4 +98,12 @@ public class BookController {
     public ResponseEntity<?> findNumberOfBooksPerAuthor(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(authorApplicationService.findBooksPerAuthor(id));
     }
+
+    @GetMapping("/goodCondition")
+    @Operation(summary = "Get books in good condition", description = "Retrieves a list of all books that are in good condition.")
+    public ResponseEntity<?> findAllNumberOfAuthorsPerCountry() {
+            return ResponseEntity.status(HttpStatus.OK).body(bookApplicationService.listBooksInGoodCondition());
+    }
+
+
 }

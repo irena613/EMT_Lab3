@@ -30,7 +30,5 @@ public interface BookService {
 
     Book edit(Long id, String name, Category category, Long authorId, Long availableCopies);
 
-
-
-
+    Book create(String name, Category category, Long id, Long availableCopies, boolean goodCondition);
 }

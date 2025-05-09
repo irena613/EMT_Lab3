@@ -1,11 +1,12 @@
 package mk.ukim.finki.emt.lab.model.domain;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mk.ukim.finki.emt.lab.model.enums.Category;
-
-import java.util.List;
+import org.hibernate.annotations.ColumnDefault;
 
 @Data
 @Entity
@@ -25,6 +26,17 @@ public class Book {
     private Author author;
 
     private Long availableCopies;
+
+    @ColumnDefault("true")
+    private Boolean goodCondition;
+
+    public Book(String name, Category category, Author author, Long availableCopies, boolean goodCondition) {
+        this.name = name;
+        this.category = category;
+        this.author = author;
+        this.availableCopies = availableCopies;
+        this.goodCondition = goodCondition;
+    }
 
     public Book(String name, Category category, Author author, Long availableCopies) {
         this.name = name;

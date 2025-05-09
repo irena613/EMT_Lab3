@@ -4,6 +4,7 @@ import mk.ukim.finki.emt.lab.model.domain.Book;
 import mk.ukim.finki.emt.lab.model.dto.create.CreateBookDto;
 import mk.ukim.finki.emt.lab.model.dto.display.DisplayBookDto;
 import mk.ukim.finki.emt.lab.model.dto.update.UpdateBookDto;
+import mk.ukim.finki.emt.lab.model.view.BooksInGoodConditionView;
 import mk.ukim.finki.emt.lab.model.view.BooksPerAuthorView;
 
 import java.util.List;
@@ -25,4 +26,7 @@ public interface BookApplicationService {
 
 
     Optional<DisplayBookDto> isRented(Long id);
+
+    List<BooksInGoodConditionView> listBooksInGoodCondition();
+    void refreshMaterializedView();
 }
