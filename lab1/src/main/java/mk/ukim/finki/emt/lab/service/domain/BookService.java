@@ -23,7 +23,7 @@ public interface BookService {
 //    Optional<Book> isRented(Long id);
       Optional<Book> isRented(Book book);
 
-    Book create(String name, Category category, Long id, Long availableCopies);
+    Book create(String name, Category category, Long id, Long availableCopies, Boolean goodCondition);
     Optional<Book> create(BookDto book);
 //    Book edit(Long id, BookDto book);
     Optional<Book> edit(Long id, BookDto book);

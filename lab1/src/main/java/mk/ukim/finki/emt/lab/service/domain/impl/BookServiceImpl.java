@@ -37,9 +37,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book create(String name, Category category, Long id, Long availableCopies) {
+    public Book create(String name, Category category, Long id, Long availableCopies, Boolean goodCondition) {
         Optional<Author> author = this.authorService.findById(id);
-        Book book = new Book(name, category, author.orElse(null), availableCopies);
+        Book book = new Book(name, category, author.orElse(null), availableCopies, goodCondition);
         return this.bookRepository.save(book);
     }
 
@@ -81,7 +81,7 @@ public class BookServiceImpl implements BookService {
         Author author = this.authorService.findById(book.getAuthor()).orElse(null);
         if (book.getName()!=null && book.getCategory()!=null
         && book.getAuthor()!=null  && book.getAvailableCopies() != null) {
-            return Optional.of(this.bookRepository.save(new Book(book.getName(), book.getCategory(), author, book.getAvailableCopies())));
+            return Optional.of(this.bookRepository.save(new Book(book.getName(), book.getCategory(), author, book.getAvailableCopies(),book.getGoodCondition())));
         }
         return Optional.empty();
     }
@@ -91,7 +91,7 @@ public class BookServiceImpl implements BookService {
         Author author = this.authorService.findById(book.getAuthor().getId()).orElse(null);
         if (book.getAuthor() != null && author != null ) {
             return Optional.of(bookRepository.save(new Book(
-                    book.getName(), book.getCategory(), author, book.getAvailableCopies()
+                    book.getName(), book.getCategory(), author, book.getAvailableCopies(), book.getGoodCondition()
             )));
         }
         return Optional.empty();
@@ -119,6 +119,9 @@ public class BookServiceImpl implements BookService {
                     if (book.getAvailableCopies()!=null){
                         existingBook.setAvailableCopies(book.getAvailableCopies());
                     }
+                    if (book.getGoodCondition()!=null){
+                        existingBook.setGoodCondition(book.getGoodCondition());
+                    }
                     return bookRepository.save(existingBook);
                 });
 
@@ -139,6 +142,9 @@ public class BookServiceImpl implements BookService {
         }
         if (book.getAvailableCopies()!=null){
             existingBook.setAvailableCopies(book.getAvailableCopies());
+        }
+        if (book.getGoodCondition()!=null){
+            existingBook.setGoodCondition(book.getGoodCondition());
         }
         return Optional.of(bookRepository.save(existingBook));
     }

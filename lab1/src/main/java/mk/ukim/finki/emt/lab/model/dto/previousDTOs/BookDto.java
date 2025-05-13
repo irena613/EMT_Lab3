@@ -14,10 +14,15 @@ public class BookDto {
 
     private Long availableCopies;
 
-    public BookDto(String name, Category category, Long author, Long availableCopies) {
+    private Boolean goodCondition;
+
+    public BookDto(String name, Category category, Long author, Long availableCopies, Boolean goodCondition) {
         this.name = name;
         this.category = category;
         this.author = author;
         this.availableCopies = availableCopies;
+        this.goodCondition = goodCondition;
     }
+
+
 }

@@ -30,7 +30,7 @@ public class Book {
     @ColumnDefault("true")
     private Boolean goodCondition;
 
-    public Book(String name, Category category, Author author, Long availableCopies, boolean goodCondition) {
+    public Book(String name, Category category, Author author, Long availableCopies, Boolean goodCondition) {
         this.name = name;
         this.category = category;
         this.author = author;
@@ -38,10 +38,10 @@ public class Book {
         this.goodCondition = goodCondition;
     }
 
-    public Book(String name, Category category, Author author, Long availableCopies) {
-        this.name = name;
-        this.category = category;
-        this.availableCopies = availableCopies;
-        this.author = author;
-    }
+//    public Book(String name, Category category, Author author, Long availableCopies) {
+//        this.name = name;
+//        this.category = category;
+//        this.availableCopies = availableCopies;
+//        this.author = author;
+//    }
 }
